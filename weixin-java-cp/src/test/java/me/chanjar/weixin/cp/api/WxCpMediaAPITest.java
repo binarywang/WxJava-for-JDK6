@@ -29,7 +29,7 @@ public class WxCpMediaAPITest {
   @Inject
   protected WxCpServiceImpl wxService;
 
-  private List<String> media_ids = new ArrayList<>();
+  private List<String> media_ids = new ArrayList<String>();
 
   @Test(dataProvider = "uploadMedia")
   public void testUploadMedia(String mediaType, String fileType, String fileName) throws WxErrorException, IOException {

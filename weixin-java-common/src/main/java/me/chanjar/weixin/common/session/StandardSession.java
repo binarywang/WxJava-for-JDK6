@@ -1,10 +1,14 @@
 package me.chanjar.weixin.common.session;
 
-import me.chanjar.weixin.common.util.res.StringManager;
-
-import java.util.*;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import me.chanjar.weixin.common.util.res.StringManager;
 
 public class StandardSession implements WxSession, InternalSession {
 
@@ -18,7 +22,7 @@ public class StandardSession implements WxSession, InternalSession {
    */
   protected static final String EMPTY_ARRAY[] = new String[0];
   // ------------------------------ WxSession
-  protected Map<String, Object> attributes = new ConcurrentHashMap<>();
+  protected Map<String, Object> attributes = new ConcurrentHashMap<String, Object>();
   /**
    * The session identifier of this Session.
    */
@@ -86,7 +90,7 @@ public class StandardSession implements WxSession, InternalSession {
       throw new IllegalStateException
               (sm.getString("sessionImpl.getAttributeNames.ise"));
 
-    Set<String> names = new HashSet<>();
+    Set<String> names = new HashSet<String>();
     names.addAll(this.attributes.keySet());
     return Collections.enumeration(names);
   }

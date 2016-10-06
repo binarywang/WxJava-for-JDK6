@@ -1,12 +1,13 @@
 package me.chanjar.weixin.common.session;
 
-import me.chanjar.weixin.common.util.res.StringManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import me.chanjar.weixin.common.util.res.StringManager;
 
 /**
  * 基于内存的session manager
@@ -32,7 +33,7 @@ public class StandardSessionManager implements WxSessionManager, InternalSession
    * The set of currently active Sessions for this Manager, keyed by
    * session identifier.
    */
-  protected Map<String, InternalSession> sessions = new ConcurrentHashMap<>();
+  protected Map<String, InternalSession> sessions = new ConcurrentHashMap<String, InternalSession>();
   /**
    * The maximum number of active Sessions allowed, or -1 for no limit.
    */

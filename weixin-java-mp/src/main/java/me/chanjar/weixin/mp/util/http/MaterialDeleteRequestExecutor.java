@@ -31,7 +31,7 @@ public class MaterialDeleteRequestExecutor implements RequestExecutor<Boolean, S
       httpPost.setConfig(config);
     }
 
-    Map<String, String> params = new HashMap<>();
+    Map<String, String> params = new HashMap<String, String>();
     params.put("media_id", materialId);
     httpPost.setEntity(new StringEntity(WxGsonBuilder.create().toJson(params)));
     try(CloseableHttpResponse response = httpclient.execute(httpPost)){

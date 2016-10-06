@@ -25,7 +25,7 @@ public class WxMessageInMemoryDuplicateChecker implements WxMessageDuplicateChec
   /**
    * 消息id->消息时间戳的map
    */
-  private final ConcurrentHashMap<String, Long> msgId2Timestamp = new ConcurrentHashMap<>();
+  private final ConcurrentHashMap<String, Long> msgId2Timestamp = new ConcurrentHashMap<String, Long>();
 
   /**
    * 后台清理线程是否已经开启

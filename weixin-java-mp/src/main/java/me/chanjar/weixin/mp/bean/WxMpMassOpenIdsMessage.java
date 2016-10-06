@@ -14,7 +14,7 @@ import java.util.List;
 public class WxMpMassOpenIdsMessage implements Serializable {
   private static final long serialVersionUID = -8022910911104788999L;
   
-  private List<String> toUsers = new ArrayList<>();
+  private List<String> toUsers = new ArrayList<String>();
   private String msgType;
   private String content;
   private String mediaId;

@@ -3,7 +3,7 @@ package me.chanjar.weixin.common.util.crypto;
 import java.util.ArrayList;
 
 public class ByteGroup {
-  ArrayList<Byte> byteContainer = new ArrayList<>();
+  ArrayList<Byte> byteContainer = new ArrayList<Byte>();
 
   public byte[] toBytes() {
     byte[] bytes = new byte[this.byteContainer.size()];

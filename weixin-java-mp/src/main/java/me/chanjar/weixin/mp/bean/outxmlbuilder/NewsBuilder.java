@@ -1,6 +1,7 @@
 package me.chanjar.weixin.mp.bean.outxmlbuilder;
 
 import me.chanjar.weixin.mp.bean.WxMpXmlOutNewsMessage;
+import me.chanjar.weixin.mp.bean.WxMpXmlOutNewsMessage.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public final class NewsBuilder extends BaseBuilder<NewsBuilder, WxMpXmlOutNewsMessage> {
 
-  protected final List<WxMpXmlOutNewsMessage.Item> articles = new ArrayList<>();
+  protected final List<WxMpXmlOutNewsMessage.Item> articles = new ArrayList<Item>();
   
   public NewsBuilder addArticle(WxMpXmlOutNewsMessage.Item item) {
     this.articles.add(item);

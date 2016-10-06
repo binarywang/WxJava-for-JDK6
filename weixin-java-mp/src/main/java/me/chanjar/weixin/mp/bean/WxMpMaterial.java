@@ -22,7 +22,7 @@ public class WxMpMaterial {
   }
 
   public Map<String, String> getForm() {
-    Map<String, String> form = new HashMap<>();
+    Map<String, String> form = new HashMap<String, String>();
     form.put("title", this.videoTitle);
     form.put("introduction", this.videoIntroduction);
     return form;

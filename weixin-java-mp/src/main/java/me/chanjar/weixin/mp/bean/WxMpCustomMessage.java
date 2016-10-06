@@ -32,7 +32,7 @@ public class WxMpCustomMessage implements Serializable {
   private String hqMusicUrl;
   private String kfAccount;
   private String cardId;
-  private List<WxArticle> articles = new ArrayList<>();
+  private List<WxArticle> articles = new ArrayList<WxArticle>();
 
   public String getToUser() {
     return this.toUser;

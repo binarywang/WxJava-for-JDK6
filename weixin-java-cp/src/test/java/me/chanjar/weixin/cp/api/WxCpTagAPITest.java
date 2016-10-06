@@ -40,7 +40,7 @@ public class WxCpTagAPITest {
 
   @Test(dependsOnMethods = "testTagGet")
   public void testTagAddUsers() throws Exception {
-    List<String> userIds = new ArrayList<>();
+    List<String> userIds = new ArrayList<String>();
     userIds.add(((ApiTestModule.WxXmlCpInMemoryConfigStorage) this.configStorage).getUserId());
     this.wxService.tagAddUsers(this.tagId, userIds, null);
   }
@@ -53,7 +53,7 @@ public class WxCpTagAPITest {
 
   @Test(dependsOnMethods = "testTagGetUsers")
   public void testTagRemoveUsers() throws Exception {
-    List<String> userIds = new ArrayList<>();
+    List<String> userIds = new ArrayList<String>();
     userIds.add(((ApiTestModule.WxXmlCpInMemoryConfigStorage) this.configStorage).getUserId());
     this.wxService.tagRemoveUsers(this.tagId, userIds);
   }

@@ -54,7 +54,7 @@ public class XStreamTransformer {
   }
 
   private static Map<Class<?>, XStream> configXStreamInstance() {
-    Map<Class<?>, XStream> map = new HashMap<>();
+    Map<Class<?>, XStream> map = new HashMap<Class<?>, XStream>();
     map.put(WxMpXmlMessage.class, config_WxMpXmlMessage());
     map.put(WxMpXmlOutMusicMessage.class, config_WxMpXmlOutMusicMessage());
     map.put(WxMpXmlOutNewsMessage.class, config_WxMpXmlOutNewsMessage());
