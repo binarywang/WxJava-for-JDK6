@@ -1,7 +1,8 @@
 package me.chanjar.weixin.cp.api;
 
-import java.io.IOException;
 import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -12,6 +13,7 @@ import me.chanjar.weixin.common.util.xml.XStreamInitializer;
 
 public class ApiTestModule implements Module {
 
+  @SuppressWarnings("unchecked")
   public static <T> T fromXml(Class<T> clazz, InputStream is) {
     XStream xstream = XStreamInitializer.getInstance();
     xstream.alias("xml", clazz);
@@ -21,8 +23,9 @@ public class ApiTestModule implements Module {
 
   @Override
   public void configure(Binder binder) {
-    try (InputStream is1 = ClassLoader
-        .getSystemResourceAsStream("test-config.xml")) {
+    InputStream is1 = null;
+    try {
+      is1 = ClassLoader.getSystemResourceAsStream("test-config.xml");
       WxXmlCpInMemoryConfigStorage config = fromXml(
           WxXmlCpInMemoryConfigStorage.class, is1);
       WxCpServiceImpl wxService = new WxCpServiceImpl();
@@ -30,8 +33,8 @@ public class ApiTestModule implements Module {
 
       binder.bind(WxCpServiceImpl.class).toInstance(wxService);
       binder.bind(WxCpConfigStorage.class).toInstance(config);
-    } catch (IOException e) {
-      e.printStackTrace();
+    } finally {
+      IOUtils.closeQuietly(is1);
     }
   }
 

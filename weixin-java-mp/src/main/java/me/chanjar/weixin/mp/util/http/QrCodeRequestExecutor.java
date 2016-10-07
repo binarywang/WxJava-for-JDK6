@@ -1,12 +1,12 @@
 package me.chanjar.weixin.mp.util.http;
 
-import me.chanjar.weixin.common.bean.result.WxError;
-import me.chanjar.weixin.common.exception.WxErrorException;
-import me.chanjar.weixin.common.util.fs.FileUtils;
-import me.chanjar.weixin.common.util.http.InputStreamResponseHandler;
-import me.chanjar.weixin.common.util.http.RequestExecutor;
-import me.chanjar.weixin.common.util.http.Utf8ResponseHandler;
-import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.util.UUID;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
@@ -15,11 +15,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLEncoder;
-import java.util.UUID;
+import me.chanjar.weixin.common.bean.result.WxError;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.common.util.fs.FileUtils;
+import me.chanjar.weixin.common.util.http.InputStreamResponseHandler;
+import me.chanjar.weixin.common.util.http.RequestExecutor;
+import me.chanjar.weixin.common.util.http.Utf8ResponseHandler;
+import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
 
 /**
  * 获得QrCode图片 请求执行器
@@ -46,8 +48,9 @@ public class QrCodeRequestExecutor implements RequestExecutor<File, WxMpQrCodeTi
       httpGet.setConfig(config);
     }
 
-    try (CloseableHttpResponse response = httpclient.execute(httpGet);
-        InputStream inputStream = InputStreamResponseHandler.INSTANCE.handleResponse(response);) {
+    CloseableHttpResponse response = httpclient.execute(httpGet);
+    InputStream inputStream = InputStreamResponseHandler.INSTANCE.handleResponse(response);
+    try {
       Header[] contentTypeHeader = response.getHeaders("Content-Type");
       if (contentTypeHeader != null && contentTypeHeader.length > 0) {
         // 出错
@@ -58,6 +61,8 @@ public class QrCodeRequestExecutor implements RequestExecutor<File, WxMpQrCodeTi
       }
       return FileUtils.createTmpFile(inputStream, UUID.randomUUID().toString(), "jpg");
     } finally {
+      IOUtils.closeQuietly(inputStream);
+      IOUtils.closeQuietly(response);
       httpGet.releaseConnection();
     }
 

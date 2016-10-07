@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
+
 public class FileUtils {
 
 
@@ -26,7 +28,9 @@ public class FileUtils {
 
     tmpFile.deleteOnExit();
     
-    try (FileOutputStream fos = new FileOutputStream(tmpFile)) {
+    FileOutputStream fos = null;
+    try  {
+      fos = new FileOutputStream(tmpFile);
       int read = 0;
       byte[] bytes = new byte[1024 * 100];
       while ((read = inputStream.read(bytes)) != -1) {
@@ -35,7 +39,9 @@ public class FileUtils {
 
       fos.flush();
       return tmpFile;
-    }  
+    } finally {
+      IOUtils.closeQuietly(fos);
+    }
   }
 
   /**

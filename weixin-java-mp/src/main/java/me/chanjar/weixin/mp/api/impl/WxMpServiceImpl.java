@@ -2,6 +2,7 @@ package me.chanjar.weixin.mp.api.impl;
 
 import java.io.IOException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -141,7 +142,8 @@ public class WxMpServiceImpl implements WxMpService {
               RequestConfig config = RequestConfig.custom().setProxy(this.httpProxy).build();
               httpGet.setConfig(config);
             }
-            try (CloseableHttpResponse response = getHttpclient().execute(httpGet)) {
+            CloseableHttpResponse response = getHttpclient().execute(httpGet);
+            try {
               String resultContent = new BasicResponseHandler().handleResponse(response);
               WxError error = WxError.fromJson(resultContent);
               if (error.getErrorCode() != 0) {
@@ -151,6 +153,7 @@ public class WxMpServiceImpl implements WxMpService {
               this.configStorage.updateAccessToken(accessToken.getAccessToken(),
                   accessToken.getExpiresIn());
             }finally {
+              IOUtils.closeQuietly(response);
               httpGet.releaseConnection();
             }
           } catch (IOException e) {

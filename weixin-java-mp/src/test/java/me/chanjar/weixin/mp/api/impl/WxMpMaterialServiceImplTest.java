@@ -1,6 +1,27 @@
 package me.chanjar.weixin.mp.api.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.apache.commons.io.IOUtils;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Guice;
+import org.testng.annotations.Test;
+
 import com.google.inject.Inject;
+
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -9,17 +30,11 @@ import me.chanjar.weixin.mp.api.ApiTestModule;
 import me.chanjar.weixin.mp.bean.WxMpMaterial;
 import me.chanjar.weixin.mp.bean.WxMpMaterialArticleUpdate;
 import me.chanjar.weixin.mp.bean.WxMpMaterialNews;
-import me.chanjar.weixin.mp.bean.result.*;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Guice;
-import org.testng.annotations.Test;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-
-import static org.junit.Assert.*;
+import me.chanjar.weixin.mp.bean.result.WxMpMaterialCountResult;
+import me.chanjar.weixin.mp.bean.result.WxMpMaterialFileBatchGetResult;
+import me.chanjar.weixin.mp.bean.result.WxMpMaterialNewsBatchGetResult;
+import me.chanjar.weixin.mp.bean.result.WxMpMaterialUploadResult;
+import me.chanjar.weixin.mp.bean.result.WxMpMaterialVideoInfoResult;
 
 /**
  * 素材管理相关接口的测试
@@ -61,8 +76,8 @@ public class WxMpMaterialServiceImplTest {
           .materialCount();
     }
 
-    try (InputStream inputStream = ClassLoader
-        .getSystemResourceAsStream(fileName)) {
+    InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileName);
+    try {
       File tempFile = FileUtils.createTmpFile(inputStream,
           UUID.randomUUID().toString(), fileType);
       WxMpMaterial wxMaterial = new WxMpMaterial();
@@ -93,6 +108,8 @@ public class WxMpMaterialServiceImplTest {
       this.mediaIds.put(res.getMediaId(), materialInfo);
 
       System.out.println(res);
+    } finally {
+      IOUtils.closeQuietly(inputStream);
     }
   }
 
@@ -163,9 +180,11 @@ public class WxMpMaterialServiceImplTest {
     assertNotNull(materialInfo);
     String filename = materialInfo.get("filename").toString();
     if (filename.endsWith(".mp3") || filename.endsWith(".jpeg")) {
-      try (InputStream inputStream = this.wxService.getMaterialService()
-          .materialImageOrVoiceDownload(mediaId)) {
+      InputStream inputStream = this.wxService.getMaterialService().materialImageOrVoiceDownload(mediaId);
+      try {
         assertNotNull(inputStream);
+      } finally {
+        IOUtils.closeQuietly(inputStream);
       }
     }
     if (filename.endsWith("mp4")) {
@@ -270,7 +289,8 @@ public class WxMpMaterialServiceImplTest {
   private List<String> mediaIdsToDownload = new ArrayList<String>();
   @Test(dataProvider="mediaFiles")
   public void testUploadMedia(String mediaType, String fileType, String fileName) throws WxErrorException, IOException {
-    try(InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileName)){
+    InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileName);
+    try {
       WxMediaUploadResult res = this.wxService.getMaterialService().mediaUpload(mediaType, fileType, inputStream);
       assertNotNull(res.getType());
       assertNotNull(res.getCreatedAt());
@@ -286,6 +306,8 @@ public class WxMpMaterialServiceImplTest {
       }
 
       System.out.println(res);
+    } finally {
+      IOUtils.closeQuietly(inputStream);
     }
   }
 

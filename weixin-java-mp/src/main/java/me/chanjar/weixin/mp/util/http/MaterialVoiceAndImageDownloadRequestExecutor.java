@@ -45,8 +45,9 @@ public class MaterialVoiceAndImageDownloadRequestExecutor implements RequestExec
     Map<String, String> params = new HashMap<String, String>();
     params.put("media_id", materialId);
     httpPost.setEntity(new StringEntity(WxGsonBuilder.create().toJson(params)));
-    try (CloseableHttpResponse response = httpclient.execute(httpPost);
-        InputStream inputStream = InputStreamResponseHandler.INSTANCE.handleResponse(response);){
+    CloseableHttpResponse response = httpclient.execute(httpPost);
+    InputStream inputStream = InputStreamResponseHandler.INSTANCE.handleResponse(response);
+    try {
       // 下载媒体文件出错
       byte[] responseContent = IOUtils.toByteArray(inputStream);
       String responseContentString = new String(responseContent, "UTF-8");
@@ -62,6 +63,8 @@ public class MaterialVoiceAndImageDownloadRequestExecutor implements RequestExec
       }
       return new ByteArrayInputStream(responseContent);
     }finally {
+      IOUtils.closeQuietly(inputStream);
+      IOUtils.closeQuietly(response);
       httpPost.releaseConnection();
     }
   }

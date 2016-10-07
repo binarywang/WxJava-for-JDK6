@@ -199,7 +199,7 @@ public class WxMpPayServiceImpl implements WxMpPayService {
           result.put(field.getAnnotation(XStreamAlias.class).value(),
               reflect.get().toString());
         }
-      } catch (NoSuchFieldException | SecurityException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
 
@@ -275,7 +275,7 @@ public class WxMpPayServiceImpl implements WxMpPayService {
             && reflect.get() == null) {
           nullFields.add(entry.getKey());
         }
-      } catch (NoSuchFieldException | SecurityException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }
@@ -286,7 +286,7 @@ public class WxMpPayServiceImpl implements WxMpPayService {
 
     if (!TRADE_TYPES.contains(request.getTradeType())) {
       throw new IllegalArgumentException(
-          "trade_type目前必须为" + TRADE_TYPES + "其中之一");
+"trade_type目前必须为" + TRADE_TYPES + "其中之一");
 
     }
 

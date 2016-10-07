@@ -1,9 +1,16 @@
 package me.chanjar.weixin.mp.api.impl;
 
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Map.Entry;
+
+import org.joor.Reflect;
+
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+
 import me.chanjar.weixin.common.annotation.Required;
 import me.chanjar.weixin.common.bean.result.WxError;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -13,11 +20,6 @@ import me.chanjar.weixin.mp.bean.store.WxMpStoreBaseInfo;
 import me.chanjar.weixin.mp.bean.store.WxMpStoreInfo;
 import me.chanjar.weixin.mp.bean.store.WxMpStoreListResult;
 import me.chanjar.weixin.mp.util.json.WxMpGsonBuilder;
-import org.joor.Reflect;
-
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map.Entry;
 
 /**
  *  Created by Binary Wang on 2016/9/26.
@@ -82,7 +84,7 @@ public class WxMpStoreServiceImpl implements WxMpStoreService {
             && reflect.get() == null) {
           nullFields.add(entry.getKey());
         }
-      } catch (NoSuchFieldException | SecurityException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }

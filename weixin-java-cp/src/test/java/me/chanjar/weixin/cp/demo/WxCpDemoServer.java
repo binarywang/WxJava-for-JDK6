@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -43,8 +44,8 @@ public class WxCpDemoServer {
   }
 
   private static void initWeixin() throws IOException {
-    try (InputStream is1 = ClassLoader
-        .getSystemResourceAsStream("test-config.xml")) {
+    InputStream is1 = ClassLoader.getSystemResourceAsStream("test-config.xml");
+    try {
       WxCpDemoInMemoryConfigStorage config = WxCpDemoInMemoryConfigStorage
           .fromXml(is1);
 
@@ -84,6 +85,8 @@ public class WxCpDemoServer {
           .handler(handler).end().rule().async(false).content("oauth")
           .handler(oauth2handler).end();
 
+    } finally {
+      IOUtils.closeQuietly(is1);
     }
   }
 }

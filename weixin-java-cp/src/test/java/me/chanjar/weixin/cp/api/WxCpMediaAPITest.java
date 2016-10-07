@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Guice;
@@ -33,8 +34,9 @@ public class WxCpMediaAPITest {
 
   @Test(dataProvider = "uploadMedia")
   public void testUploadMedia(String mediaType, String fileType, String fileName) throws WxErrorException, IOException {
-    try (InputStream inputStream = ClassLoader
-        .getSystemResourceAsStream(fileName);) {
+    InputStream inputStream = ClassLoader
+        .getSystemResourceAsStream(fileName);
+    try  {
       WxMediaUploadResult res = this.wxService.mediaUpload(mediaType, fileType,
           inputStream);
       Assert.assertNotNull(res.getType());
@@ -48,6 +50,8 @@ public class WxCpMediaAPITest {
       if (res.getThumbMediaId() != null) {
         this.media_ids.add(res.getThumbMediaId());
       }
+    } finally {
+      IOUtils.closeQuietly(inputStream);
     }
   }
 

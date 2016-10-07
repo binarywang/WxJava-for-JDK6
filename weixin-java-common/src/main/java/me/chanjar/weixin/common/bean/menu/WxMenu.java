@@ -3,11 +3,11 @@ package me.chanjar.weixin.common.bean.menu;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.chanjar.weixin.common.bean.menu.WxMenuButton;
+import com.google.common.base.Charsets;
+
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 
 /**
@@ -36,7 +36,7 @@ public class WxMenu implements Serializable {
    * 相比 http://mp.weixin.qq.com/wiki/13/43de8269be54a0a6f64413e4dfa94f39.html 的格式，外层多套了一个menu
    */
   public static WxMenu fromJson(InputStream is) {
-    return WxGsonBuilder.create().fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), WxMenu.class);
+    return WxGsonBuilder.create().fromJson(new InputStreamReader(is, Charsets.UTF_8), WxMenu.class);
   }
 
   public List<WxMenuButton> getButtons() {

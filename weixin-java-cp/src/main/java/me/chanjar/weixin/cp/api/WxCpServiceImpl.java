@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
@@ -118,12 +119,16 @@ public class WxCpServiceImpl implements WxCpService {
               httpGet.setConfig(config);
             }
             String resultContent = null;
-            try (CloseableHttpClient httpclient = getHttpclient();
-                CloseableHttpResponse response = httpclient.execute(httpGet)) {
+            CloseableHttpClient httpclient = getHttpclient();
+            CloseableHttpResponse response = httpclient.execute(httpGet);
+            try {
               resultContent = new BasicResponseHandler().handleResponse(response);
             } finally {
+              IOUtils.closeQuietly(response);
+              IOUtils.closeQuietly(httpclient);
               httpGet.releaseConnection();
             }
+
             WxError error = WxError.fromJson(resultContent);
             if (error.getErrorCode() != 0) {
               throw new WxErrorException(error);

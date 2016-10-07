@@ -2,6 +2,7 @@ package me.chanjar.weixin.common.util.http;
 
 import java.io.IOException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.Consts;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
@@ -33,11 +34,12 @@ public class SimplePostRequestExecutor implements RequestExecutor<String, String
       httpPost.setEntity(entity);
     }
 
-    try (CloseableHttpResponse response = httpclient.execute(httpPost)) {
+    CloseableHttpResponse response = null;
+    try {
+      response = httpclient.execute(httpPost);
       String responseContent = Utf8ResponseHandler.INSTANCE.handleResponse(response);
       if (responseContent.isEmpty()) {
-        throw new WxErrorException(
-            WxError.newBuilder().setErrorCode(9999).setErrorMsg("无响应内容")
+        throw new WxErrorException(WxError.newBuilder().setErrorCode(9999).setErrorMsg("无响应内容")
                 .build());
       }
 
@@ -52,6 +54,7 @@ public class SimplePostRequestExecutor implements RequestExecutor<String, String
       }
       return responseContent;
     } finally {
+      IOUtils.closeQuietly(response);
       httpPost.releaseConnection();
     }
   }

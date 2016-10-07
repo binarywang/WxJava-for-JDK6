@@ -1,8 +1,8 @@
 package me.chanjar.weixin.mp.demo;
 
-import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -42,8 +42,8 @@ public class WxMpDemoServer {
   }
 
   private static void initWeixin() {
-    try (InputStream is1 = ClassLoader
-        .getSystemResourceAsStream("test-config.xml")) {
+    InputStream is1 = ClassLoader.getSystemResourceAsStream("test-config.xml");
+    try {
       WxMpDemoInMemoryConfigStorage config = WxMpDemoInMemoryConfigStorage
           .fromXml(is1);
 
@@ -60,12 +60,12 @@ public class WxMpDemoServer {
       wxMpMessageRouter = new WxMpMessageRouter(wxMpService);
       wxMpMessageRouter.rule().handler(logHandler).next().rule()
           .msgType(WxConsts.XML_MSG_TEXT).matcher(guessNumberHandler)
-          .handler(guessNumberHandler).end().rule().async(false).content("哈哈")
+.handler(guessNumberHandler).end().rule().async(false).content("哈哈")
           .handler(textHandler).end().rule().async(false).content("图片")
           .handler(imageHandler).end().rule().async(false).content("oauth")
           .handler(oauth2handler).end();
-    } catch (IOException e) {
-      e.printStackTrace();
+    } finally {
+      IOUtils.closeQuietly(is1);
     }
   }
 }

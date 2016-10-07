@@ -1,7 +1,8 @@
 package me.chanjar.weixin.mp.api;
 
-import java.io.IOException;
 import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -14,8 +15,8 @@ public class ApiTestModule implements Module {
 
   @Override
   public void configure(Binder binder) {
-    try (InputStream is1 = ClassLoader
-        .getSystemResourceAsStream("test-config.xml")) {
+    InputStream is1 = ClassLoader.getSystemResourceAsStream("test-config.xml");
+    try {
       WxXmlMpInMemoryConfigStorage config = this
           .fromXml(WxXmlMpInMemoryConfigStorage.class, is1);
       WxMpServiceImpl wxService = new WxMpServiceImpl();
@@ -23,8 +24,8 @@ public class ApiTestModule implements Module {
 
       binder.bind(WxMpServiceImpl.class).toInstance(wxService);
       binder.bind(WxMpConfigStorage.class).toInstance(config);
-    } catch (IOException e) {
-      e.printStackTrace();
+    } finally {
+      IOUtils.closeQuietly(is1);
     }
   }
 
