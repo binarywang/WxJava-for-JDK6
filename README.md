@@ -1,8 +1,6 @@
 # Weixin Java Tools 
 # 微信公众号/企业号开发Java SDK for JDK6
 
-## Maven & Gradle
-
 * 公众号（订阅号、服务号）：
 
 maven：
