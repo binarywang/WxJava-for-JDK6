@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-common</artifactId>
+            <artifactId>weixin-java-common-jdk6</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
