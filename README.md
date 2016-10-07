@@ -1,4 +1,4 @@
-# Weixin Java Tools 
+# Weixin Java Tools ![Maven Central](https://img.shields.io/maven-central/v/com.github.binarywang/weixin-java-tools-jdk6.svg) 
 # 微信公众号/企业号开发Java SDK for JDK6
 
 * 公众号（订阅号、服务号）：
