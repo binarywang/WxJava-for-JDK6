@@ -1,4 +1,4 @@
-# Weixin Java Tools 微信公众号/企业号开发Java SDK
+# Weixin Java Tools 微信公众号/企业号开发Java SDK for JDK6
 ## [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)     ![Maven Central](https://img.shields.io/maven-central/v/com.github.binarywang/weixin-java-parent.svg)  [![Build Status](https://travis-ci.org/wechat-group/weixin-java-tools.svg?branch=develop)](https://travis-ci.org/wechat-group/weixin-java-tools)
 
 
@@ -32,13 +32,13 @@ maven：
 ```xml
 <dependency>
   <groupId>com.github.binarywang</groupId>
-  <artifactId>weixin-java-mp</artifactId>
+  <artifactId>weixin-java-mp-jdk6</artifactId>
   <version>2.2.0</version>
 </dependency>
 ```
 gradle：
 ```groovy
-compile 'com.github.binarywang:weixin-java-mp:2.2.0'
+compile 'com.github.binarywang:weixin-java-mp-jdk6:2.2.0'
 ```
 
 * 企业号：
@@ -47,13 +47,13 @@ maven：
 ```xml
 <dependency>
   <groupId>com.github.binarywang</groupId>
-  <artifactId>weixin-java-cp</artifactId>
+  <artifactId>weixin-java-cp-jdk6</artifactId>
   <version>2.2.0</version>
 </dependency>
 ```
 gradle：
 ```groovy
-compile 'com.github.binarywang:weixin-java-cp:2.2.0'
+compile 'com.github.binarywang:weixin-java-cp-jdk6:2.2.0'
 ```
 
 ===========
