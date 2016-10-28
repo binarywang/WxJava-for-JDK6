@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oraclejdk6
+  - oraclejdk7
 
 script: "mvn clean package -Dmaven.test.skip=true"
 
