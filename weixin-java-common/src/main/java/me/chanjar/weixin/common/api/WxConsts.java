@@ -63,7 +63,7 @@ public class WxConsts {
   /**
    * 群发反馈消息代码所对应的文字描述
    */
-  public static final Map<String, String> MASS_ST_2_DESC = new HashMap<>();
+  public static final Map<String, String> MASS_ST_2_DESC = new HashMap<String, String>();
 
   ///////////////////////
   // 微信端推送过来的事件类型

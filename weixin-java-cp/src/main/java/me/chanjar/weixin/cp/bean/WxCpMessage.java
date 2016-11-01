@@ -33,7 +33,7 @@ public class WxCpMessage implements Serializable {
   private String musicUrl;
   private String hqMusicUrl;
   private String safe;
-  private List<WxArticle> articles = new ArrayList<>();
+  private List<WxArticle> articles = new ArrayList<WxArticle>();
 
   /**
    * 获得文本消息builder

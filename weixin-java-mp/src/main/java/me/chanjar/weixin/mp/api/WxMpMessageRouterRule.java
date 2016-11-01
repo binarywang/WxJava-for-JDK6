@@ -34,9 +34,9 @@ public class WxMpMessageRouterRule {
 
   private boolean reEnter = false;
 
-  private List<WxMpMessageHandler> handlers = new ArrayList<>();
+  private List<WxMpMessageHandler> handlers = new ArrayList<WxMpMessageHandler>();
 
-  private List<WxMpMessageInterceptor> interceptors = new ArrayList<>();
+  private List<WxMpMessageInterceptor> interceptors = new ArrayList<WxMpMessageInterceptor>();
 
   public WxMpMessageRouterRule(WxMpMessageRouter routerBuilder) {
     this.routerBuilder = routerBuilder;
@@ -199,7 +199,7 @@ public class WxMpMessageRouterRule {
 
     try {
 
-      Map<String, Object> context = new HashMap<>();
+      Map<String, Object> context = new HashMap<String, Object>();
       // 如果拦截器不通过
       for (WxMpMessageInterceptor interceptor : this.interceptors) {
         if (!interceptor.intercept(wxMessage, context, wxMpService, sessionManager)) {

@@ -53,7 +53,7 @@ public class WxMpUserServiceImplTest {
   }
 
   public void testUserInfoList() throws WxErrorException {
-    List<String> openids = new ArrayList<>();
+    List<String> openids = new ArrayList<String>();
     openids.add(this.configProvider.getOpenid());
     List<WxMpUser> userList = this.wxService.getUserService()
         .userInfoList(openids);

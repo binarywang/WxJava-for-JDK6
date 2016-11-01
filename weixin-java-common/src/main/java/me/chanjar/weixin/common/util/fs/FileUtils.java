@@ -26,16 +26,19 @@ public class FileUtils {
 
     tmpFile.deleteOnExit();
     
-    try (FileOutputStream fos = new FileOutputStream(tmpFile)) {
+    FileOutputStream fos = new FileOutputStream(tmpFile);
+    try{
       int read = 0;
       byte[] bytes = new byte[1024 * 100];
       while ((read = inputStream.read(bytes)) != -1) {
         fos.write(bytes, 0, read);
       }
-
+  
       fos.flush();
       return tmpFile;
-    }  
+    }finally{
+      fos.close();
+    }
   }
 
   /**

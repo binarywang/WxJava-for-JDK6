@@ -4,7 +4,7 @@
   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.binarywang</groupId>
-  <artifactId>weixin-java-parent</artifactId>
+  <artifactId>weixin-java-tools-jdk6</artifactId>
   <version>2.3.0</version>
   <packaging>pom</packaging>
   <name>WeiXin Java Tools - Parent</name>
@@ -66,7 +66,6 @@
     <module>weixin-java-common</module>
     <module>weixin-java-cp</module>
     <module>weixin-java-mp</module>
-    <module>weixin-java-osgi</module>
   </modules>
 
   <properties>
@@ -299,7 +298,7 @@
         <version>2.3.2</version>
         <configuration>
           <source>1.7</source>
-          <target>1.7</target>
+          <target>1.6</target>
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>

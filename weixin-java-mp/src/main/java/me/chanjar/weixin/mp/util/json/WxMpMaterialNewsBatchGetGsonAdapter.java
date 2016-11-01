@@ -11,6 +11,7 @@ package me.chanjar.weixin.mp.util.json;
 import com.google.gson.*;
 import me.chanjar.weixin.common.util.json.GsonHelper;
 import me.chanjar.weixin.mp.bean.material.WxMpMaterialNewsBatchGetResult;
+import me.chanjar.weixin.mp.bean.material.WxMpMaterialNewsBatchGetResult.WxMaterialNewsBatchGetNewsItem;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class WxMpMaterialNewsBatchGetGsonAdapter implements JsonDeserializer<WxM
     }
     if (json.get("item") != null && !json.get("item").isJsonNull()) {
       JsonArray item = json.getAsJsonArray("item");
-      List<WxMpMaterialNewsBatchGetResult.WxMaterialNewsBatchGetNewsItem> items = new ArrayList<>();
+      List<WxMpMaterialNewsBatchGetResult.WxMaterialNewsBatchGetNewsItem> items = new ArrayList<WxMaterialNewsBatchGetNewsItem>();
       for (JsonElement anItem : item) {
         JsonObject articleInfo = anItem.getAsJsonObject();
         items.add(WxMpGsonBuilder.create().fromJson(articleInfo, WxMpMaterialNewsBatchGetResult.WxMaterialNewsBatchGetNewsItem.class));

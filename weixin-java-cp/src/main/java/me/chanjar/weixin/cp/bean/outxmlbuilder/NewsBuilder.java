@@ -13,7 +13,7 @@ import java.util.List;
  */
 public final class NewsBuilder extends BaseBuilder<NewsBuilder, WxCpXmlOutNewsMessage> {
 
-  protected final List<Item> articles = new ArrayList<>();
+  protected final List<Item> articles = new ArrayList<Item>();
 
   public NewsBuilder addArticle(Item item) {
     this.articles.add(item);

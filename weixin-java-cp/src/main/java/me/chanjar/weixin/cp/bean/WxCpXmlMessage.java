@@ -569,7 +569,7 @@ public class WxCpXmlMessage implements Serializable {
   public static class SendPicsInfo {
 
     @XStreamAlias("PicList")
-    protected final List<Item> picList = new ArrayList<>();
+    protected final List<Item> picList = new ArrayList<Item>();
     @XStreamAlias("Count")
     private Long count;
 

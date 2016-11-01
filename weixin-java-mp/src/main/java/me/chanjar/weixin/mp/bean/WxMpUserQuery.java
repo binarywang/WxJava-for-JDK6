@@ -15,7 +15,7 @@ import com.google.gson.Gson;
  * @author LiuJunGuang
  */
 public class WxMpUserQuery {
-  private List<WxMpUserQueryParam> queryParamList = new ArrayList<>();
+  private List<WxMpUserQueryParam> queryParamList = new ArrayList<WxMpUserQueryParam>();
 
   public WxMpUserQuery() {
     super();
@@ -103,7 +103,7 @@ public class WxMpUserQuery {
   }
 
   public String toJsonString() {
-    Map<String, Object> map = new HashMap<>();
+    Map<String, Object> map = new HashMap<String, Object>();
     map.put("user_list", this.queryParamList);
     return new Gson().toJson(map);
   }

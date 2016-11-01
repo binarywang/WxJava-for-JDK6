@@ -32,7 +32,7 @@ public class StandardSessionManager implements WxSessionManager, InternalSession
    * The set of currently active Sessions for this Manager, keyed by
    * session identifier.
    */
-  protected Map<String, InternalSession> sessions = new ConcurrentHashMap<>();
+  protected Map<String, InternalSession> sessions = new ConcurrentHashMap<String, InternalSession>();
   /**
    * The maximum number of active Sessions allowed, or -1 for no limit.
    */

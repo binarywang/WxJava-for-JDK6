@@ -37,7 +37,7 @@ public class WxMpUserBlacklistServiceImplTest {
   public void testPushToBlacklist() throws Exception {
     WxXmlMpInMemoryConfigStorage configStorage = (WxXmlMpInMemoryConfigStorage) this.wxService
       .getWxMpConfigStorage();
-    List<String> openidList = new ArrayList<>();
+    List<String> openidList = new ArrayList<String>();
     openidList.add(configStorage.getOpenid());
     this.wxService.getBlackListService().pushToBlacklist(openidList);
   }
@@ -46,7 +46,7 @@ public class WxMpUserBlacklistServiceImplTest {
   public void testPullFromBlacklist() throws Exception {
     WxXmlMpInMemoryConfigStorage configStorage = (WxXmlMpInMemoryConfigStorage) this.wxService
       .getWxMpConfigStorage();
-    List<String> openidList = new ArrayList<>();
+    List<String> openidList = new ArrayList<String>();
     openidList.add(configStorage.getOpenid());
     this.wxService.getBlackListService().pullFromBlacklist(openidList);
   }

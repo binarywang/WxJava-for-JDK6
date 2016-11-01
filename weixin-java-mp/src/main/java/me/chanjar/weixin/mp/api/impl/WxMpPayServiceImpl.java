@@ -159,7 +159,7 @@ public class WxMpPayServiceImpl implements WxMpPayService {
    * @return 签名字符串
    */
   private String createSign(Map<String, String> packageParams, String signKey) {
-    SortedMap<String, String> sortedMap = new TreeMap<>(packageParams);
+    SortedMap<String, String> sortedMap = new TreeMap<String, String>(packageParams);
 
     StringBuffer toSign = new StringBuffer();
     for (String key : sortedMap.keySet()) {
@@ -286,7 +286,7 @@ public class WxMpPayServiceImpl implements WxMpPayService {
           unifiedOrderResult.getErrCode(), unifiedOrderResult.getErrCodeDes()));
     }
 
-    Map<String, String> payInfo = new HashMap<>();
+    Map<String, String> payInfo = new HashMap<String, String>();
     payInfo.put("appId", this.wxMpService.getWxMpConfigStorage().getAppId());
     // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
     payInfo.put("timeStamp", String.valueOf(System.currentTimeMillis() / 1000));

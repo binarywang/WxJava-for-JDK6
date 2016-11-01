@@ -14,7 +14,7 @@ import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 public class WxCpUser implements Serializable {
 
   private static final long serialVersionUID = -5696099236344075582L;
-  private final List<Attr> extAttrs = new ArrayList<>();
+  private final List<Attr> extAttrs = new ArrayList<Attr>();
   private String userId;
   private String name;
   private Integer[] departIds;

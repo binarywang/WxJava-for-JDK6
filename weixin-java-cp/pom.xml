@@ -5,18 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.binarywang</groupId>
-        <artifactId>weixin-java-parent</artifactId>
+        <artifactId>weixin-java-tools-jdk6</artifactId>
         <version>2.3.0</version>
     </parent>
 
-    <artifactId>weixin-java-cp</artifactId>
+    <artifactId>weixin-java-cp-jdk6</artifactId>
     <name>WeiXin Java Tools - CP</name>
     <description>微信企业号Java SDK</description>
 
     <dependencies>
         <dependency>
             <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-common</artifactId>
+            <artifactId>weixin-java-common-jdk6</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

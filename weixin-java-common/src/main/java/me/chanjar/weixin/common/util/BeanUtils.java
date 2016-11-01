@@ -30,7 +30,7 @@ public class BeanUtils {
   public static void checkRequiredFields(Object bean) throws WxErrorException {
     List<String> nullFields = Lists.newArrayList();
 
-    List<Field> fields = new ArrayList<>( Arrays.asList(bean.getClass().getDeclaredFields()));
+    List<Field> fields = new ArrayList<Field>( Arrays.asList(bean.getClass().getDeclaredFields()));
     fields.addAll(Arrays.asList(bean.getClass().getSuperclass().getDeclaredFields()));
     for (Field field : fields) {
       try {
@@ -41,8 +41,7 @@ public class BeanUtils {
           nullFields.add(field.getName());
         }
         field.setAccessible(isAccessible);
-      } catch (SecurityException | IllegalArgumentException
-        | IllegalAccessException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }
@@ -59,7 +58,7 @@ public class BeanUtils {
    */
   public static Map<String, String> xmlBean2Map(Object bean) {
     Map<String, String> result = Maps.newHashMap();
-    List<Field> fields = new ArrayList<>( Arrays.asList(bean.getClass().getDeclaredFields()));
+    List<Field> fields = new ArrayList<Field>( Arrays.asList(bean.getClass().getDeclaredFields()));
     fields.addAll(Arrays.asList(bean.getClass().getSuperclass().getDeclaredFields()));
     for (Field field : fields) {
       try {
@@ -76,8 +75,7 @@ public class BeanUtils {
         }
 
         field.setAccessible(isAccessible);
-      } catch (SecurityException | IllegalArgumentException
-        | IllegalAccessException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
 

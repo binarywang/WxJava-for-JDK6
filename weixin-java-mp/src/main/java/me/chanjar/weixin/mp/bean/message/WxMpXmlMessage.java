@@ -770,7 +770,7 @@ public class WxMpXmlMessage implements Serializable {
     private Long count;
 
     @XStreamAlias("PicList")
-    protected final List<Item> picList = new ArrayList<>();
+    protected final List<Item> picList = new ArrayList<Item>();
 
     public Long getCount() {
       return this.count;

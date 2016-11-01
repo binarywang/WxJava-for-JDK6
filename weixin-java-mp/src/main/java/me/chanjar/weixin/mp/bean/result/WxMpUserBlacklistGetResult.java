@@ -11,7 +11,7 @@ import java.util.List;
 public class WxMpUserBlacklistGetResult {
   protected int total = -1;
   protected int count = -1;
-  protected List<String> openidList = new ArrayList<>();
+  protected List<String> openidList = new ArrayList<String>();
   protected String nextOpenid;
 
   public static WxMpUserBlacklistGetResult fromJson(String json) {

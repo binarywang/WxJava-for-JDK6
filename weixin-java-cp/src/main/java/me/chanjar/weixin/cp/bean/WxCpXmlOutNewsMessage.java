@@ -14,7 +14,7 @@ public class WxCpXmlOutNewsMessage extends WxCpXmlOutMessage {
   private static final long serialVersionUID = -5796178637883178826L;
 
   @XStreamAlias("Articles")
-  protected final List<Item> articles = new ArrayList<>();
+  protected final List<Item> articles = new ArrayList<Item>();
   @XStreamAlias("ArticleCount")
   protected int articleCount;
 

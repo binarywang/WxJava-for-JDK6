@@ -34,7 +34,7 @@ public class WxMpUserBlacklistServiceImpl implements WxMpUserBlacklistService {
 
   @Override
   public void pushToBlacklist(List<String> openidList) throws WxErrorException {
-    Map<String, Object> map = new HashMap<>();
+    Map<String, Object> map = new HashMap<String, Object>();
     map.put("openid_list", openidList);
     String url = API_BLACKLIST_PREFIX + "/batchblacklist";
     this.wxMpService.execute(new SimplePostRequestExecutor(), url, new Gson().toJson(map));
@@ -42,7 +42,7 @@ public class WxMpUserBlacklistServiceImpl implements WxMpUserBlacklistService {
 
   @Override
   public void pullFromBlacklist(List<String> openidList) throws WxErrorException {
-    Map<String, Object> map = new HashMap<>();
+    Map<String, Object> map = new HashMap<String, Object>();
     map.put("openid_list", openidList);
     String url = API_BLACKLIST_PREFIX + "/batchunblacklist";
     this.wxMpService.execute(new SimplePostRequestExecutor(), url, new Gson().toJson(map));

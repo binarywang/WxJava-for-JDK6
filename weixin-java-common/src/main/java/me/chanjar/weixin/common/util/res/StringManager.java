@@ -47,7 +47,7 @@ import java.util.*;
 public class StringManager {
 
   private static final Map<String, Map<Locale, StringManager>> managers =
-          new Hashtable<>();
+          new Hashtable<String, Map<Locale, StringManager>>();
   private static int LOCALE_CACHE_SIZE = 10;
   /**
    * The ResourceBundle for this StringManager.

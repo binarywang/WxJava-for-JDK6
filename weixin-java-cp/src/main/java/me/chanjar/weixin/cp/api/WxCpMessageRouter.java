@@ -52,7 +52,7 @@ public class WxCpMessageRouter {
 
   private static final int DEFAULT_THREAD_POOL_SIZE = 100;
   protected final Logger log = LoggerFactory.getLogger(WxCpMessageRouter.class);
-  private final List<WxCpMessageRouterRule> rules = new ArrayList<>();
+  private final List<WxCpMessageRouterRule> rules = new ArrayList<WxCpMessageRouterRule>();
 
   private final WxCpService wxCpService;
 
@@ -142,7 +142,7 @@ public class WxCpMessageRouter {
       return null;
     }
 
-    final List<WxCpMessageRouterRule> matchRules = new ArrayList<>();
+    final List<WxCpMessageRouterRule> matchRules = new ArrayList<WxCpMessageRouterRule>();
     // 收集匹配的规则
     for (final WxCpMessageRouterRule rule : this.rules) {
       if (rule.test(wxMessage)) {
@@ -158,7 +158,7 @@ public class WxCpMessageRouter {
     }
 
     WxCpXmlOutMessage res = null;
-    final List<Future> futures = new ArrayList<>();
+    final List<Future> futures = new ArrayList<Future>();
     for (final WxCpMessageRouterRule rule : matchRules) {
       // 返回最后一个非异步的rule的执行结果
       if (rule.isAsync()) {

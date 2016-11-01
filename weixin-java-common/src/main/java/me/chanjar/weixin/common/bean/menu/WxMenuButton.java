@@ -13,7 +13,7 @@ public class WxMenuButton {
   private String url;
   private String mediaId;
 
-  private List<WxMenuButton> subButtons = new ArrayList<>();
+  private List<WxMenuButton> subButtons = new ArrayList<WxMenuButton>();
 
   @Override
   public String toString() {

@@ -13,7 +13,7 @@ public class WxMpTemplateMessage implements Serializable {
   private String templateId;
   private String url;
   private String topColor;
-  private List<WxMpTemplateData> data = new ArrayList<>();
+  private List<WxMpTemplateData> data = new ArrayList<WxMpTemplateData>();
 
   public String getToUser() {
     return this.toUser;
@@ -72,7 +72,7 @@ public class WxMpTemplateMessage implements Serializable {
     private String templateId;
     private String url;
     private String topColor;
-    private List<WxMpTemplateData> data = new ArrayList<>();
+    private List<WxMpTemplateData> data = new ArrayList<WxMpTemplateData>();
 
     public WxMpTemplateMessageBuilder toUser(String toUser) {
       this.toUser = toUser;

@@ -34,7 +34,7 @@ public class WxMpKefuMessage implements Serializable {
   private String kfAccount;
   private String cardId;
   private String mpNewsMediaId;
-  private List<WxArticle> articles = new ArrayList<>();
+  private List<WxArticle> articles = new ArrayList<WxArticle>();
 
   /**
    * 获得文本消息builder

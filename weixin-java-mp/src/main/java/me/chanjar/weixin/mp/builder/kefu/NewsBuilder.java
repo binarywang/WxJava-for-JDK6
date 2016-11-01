@@ -2,6 +2,7 @@ package me.chanjar.weixin.mp.builder.kefu;
 
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.bean.kefu.WxMpKefuMessage;
+import me.chanjar.weixin.mp.bean.kefu.WxMpKefuMessage.WxArticle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public final class NewsBuilder extends BaseBuilder<NewsBuilder> {
 
-  private List<WxMpKefuMessage.WxArticle> articles = new ArrayList<>();
+  private List<WxMpKefuMessage.WxArticle> articles = new ArrayList<WxArticle>();
 
   public NewsBuilder() {
     this.msgType = WxConsts.CUSTOM_MSG_NEWS;
