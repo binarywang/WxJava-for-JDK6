@@ -1,5 +1,7 @@
-# Weixin Java Tools [![Build Status](https://travis-ci.org/wechat-group/weixin-java-tools-for-JDK6.svg?branch=master)](https://travis-ci.org/wechat-group/weixin-java-tools-for-JDK6) ![Maven Central](https://img.shields.io/maven-central/v/com.github.binarywang/weixin-java-tools-jdk6.svg) 
+# Weixin Java Tools for JDK6 ![Maven Central](https://img.shields.io/maven-central/v/com.github.binarywang/weixin-java-tools-jdk6.svg) 
 # 微信公众号/企业号开发Java SDK for JDK6
+
+本项目停止更新。
 
 * 公众号（订阅号、服务号）：
 
