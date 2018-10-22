@@ -57,7 +57,7 @@
     <commons-io.version>2.5</commons-io.version>
     <commons-codec.version>1.10</commons-codec.version>
     <jetty.version>9.3.0.M0</jetty.version>
-    <jetty-new.version>9.3.10.v20160621</jetty-new.version>
+    <jetty-new.version>9.3.24.v20180605</jetty-new.version>
   </properties>
 
   <dependencies>
