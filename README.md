@@ -1,8 +1,8 @@
-WxJava 微信开发 Java SDK for JDK6
+WxJava - 微信开发 Java SDK for JDK6
 ========================================
 ![Maven Central](https://img.shields.io/maven-central/v/com.github.binarywang/weixin-java-tools-jdk6.svg) 
 
-本项目停止更新，建议升级项目所使用的jdk版本到jdk7以上，并参考主项目：https://github.com/wechat-group/weixin-java-tools
+本项目停止更新，建议升级项目所使用的jdk版本到jdk7以上，并参考主项目：https://github.com/wechat-group/WxJava
 
 * 公众号（订阅号、服务号）：
 
