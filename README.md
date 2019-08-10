@@ -1,4 +1,4 @@
-Weixin Java Tools 微信公众号/企业号开发Java SDK for JDK6
+WxJava 微信开发 Java SDK for JDK6
 ========================================
 ![Maven Central](https://img.shields.io/maven-central/v/com.github.binarywang/weixin-java-tools-jdk6.svg) 
 
