@@ -54,7 +54,7 @@
     <guava.version>24.1.1</guava.version>
     <joor.version>0.9.6</joor.version>
     <commons-lang3.version>3.4</commons-lang3.version>
-    <commons-io.version>2.5</commons-io.version>
+    <commons-io.version>2.7</commons-io.version>
     <commons-codec.version>1.10</commons-codec.version>
     <jetty.version>9.3.0.M0</jetty.version>
     <jetty-new.version>9.3.24.v20180605</jetty-new.version>
